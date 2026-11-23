@@ -26,7 +26,9 @@
             <input id="municipio" name="municipio" type="text" placeholder = "Cidade/SP" autocomplete="username" required>
 
             <label for="cpf">CPF</label>
-            <input id="cpf" name="cpf" type="text" placeholder = "xxxxxxxxxxx" autocomplete="username" required>
+            <input id="cpf" name="cpf" type="text" inputmode="numeric" maxlength="11" pattern="\d{11}"
+           		title="Informe os 11 dígitos do CPF (somente números)" placeholder="xxxxxxxxxxx"
+           		autocomplete="username" required>
 
             <label for="secao">Seção</label>
             <input id="secao" name="secao" type="text" autocomplete="username" required>
