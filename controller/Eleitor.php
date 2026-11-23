@@ -95,14 +95,36 @@ class EleitorController
 
 		$erro = null;
 		if ($metodo === 'POST') {
+			
+			$dados = [];
+			
+			$nome = isset($_POST['nome']) ? trim((string) $_POST['nome']) : '';
+			$data = isset($_POST['data']) ? trim((string) $_POST['data']) : '';
+			$zona = isset($_POST['zona']) ? trim((string) $_POST['zona']) : '';
+			$municipio = isset($_POST['municipio']) ? trim((string) $_POST['municipio']) : '';
+			$cpf = isset($_POST['cpf']) ? trim((string) $_POST['cpf']) : '';
+			$secao = isset($_POST['secao']) ? trim((string) $_POST['secao']) : '';
+			$filiacao = isset($_POST['filiacao']) ? trim((string) $_POST['filiacao']) : '';
+
+			
+			if($nome=='' || $data=='' || $zona=='' || 
+			$municipio=='' || $cpf=='' || $secao=='' || $filiacao==''){
+
+				$dados = null;
+				echo "<script>alert('Dados nulos!');</script>";
+				require __DIR__ . '/../view/view_inicio_eleitor.php';
+				return;
+					
+			}
+			
 			$dados = [
-				'nome' => isset($_POST['nome']) ? trim((string) $_POST['nome']) : '',
-				'data' => isset($_POST['data']) ? trim((string) $_POST['data']) : '',
-				'zona' => isset($_POST['zona']) ? trim((string) $_POST['zona']) : '',
-				'municipio' => isset($_POST['municipio']) ? trim((string) $_POST['municipio']) : '',
-				'cpf' => isset($_POST['cpf']) ? trim((string) $_POST['cpf']) : '',
-				'secao' => isset($_POST['secao']) ? trim((string) $_POST['secao']) : '',
-				'filiacao' => isset($_POST['filiacao']) ? trim((string) $_POST['filiacao']) : '',
+				'nome' => $nome,
+				'data' => $data,
+				'zona' => $zona,
+				'municipio' => $municipio,
+				'cpf' => $cpf,
+				'secao' => $secao,
+				'filiacao' => $filiacao
 			];
 
 			try {
